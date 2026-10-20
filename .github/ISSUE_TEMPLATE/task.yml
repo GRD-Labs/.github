@@ -1,0 +1,47 @@
+# .github/ISSUE_TEMPLATE/task.yml
+name: "Task"
+description: "A piece of planned work: a feature, an improvement, or a refactor"
+title: "[Task]: "
+labels: ["task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill this in before you open a branch. One quick check: can it be done in 2 to 3 days?
+        If not, split it into smaller issues.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: What are we doing, and why?
+      placeholder: "Users can try passwords forever. We need a limit on login attempts to stop guessing attacks."
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical-spec
+    attributes:
+      label: How will we do it?
+      description: Your plan, plus anything others depend on that will change (API routes, database tables, message formats, schemas).
+      placeholder: "Add a rate limiter to `POST /login`. New table `login_attempts`. Return 429 after 5 failures in 10 minutes."
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: What are we NOT doing? (optional)
+      description: Helps keep the task small and the PR reviewable.
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: The checklist that tells us this is finished. Replace the first line with what is specific to this task.
+      value: |
+        - [ ] (Replace this line with what's specific to this task)
+        - [ ] Tests cover the main case and the edge cases
+        - [ ] Docs and schemas are updated if behavior changed
+        - [ ] CI passes and a teammate approved the PR
+    validations:
+      required: true

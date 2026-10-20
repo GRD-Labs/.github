@@ -1,0 +1,60 @@
+# .github/ISSUE_TEMPLATE/docs.yml
+name: "Documentation"
+description: "Write, update, or tidy up docs and diagrams"
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Decide what you're writing before you start. Not sure about the types?
+        See the Documentation guide in our `.github` repo.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: What kind of doc is it?
+      options:
+        - "Decision record (ADR)"
+        - "Component spec"
+        - "Setup guide"
+        - "Diagram"
+        - "Other / cleanup"
+    validations:
+      required: true
+
+  - type: input
+    id: file-path
+    attributes:
+      label: Where will it live? (optional)
+      description: The file path, if you already know it.
+      placeholder: "docs/adr/0002-choose-message-queue.md"
+
+  - type: textarea
+    id: doc-scope
+    attributes:
+      label: What should it cover?
+      description: What needs to be written down or changed, and who will read it?
+      placeholder: "Explain why we picked Postgres over MongoDB, including the options we compared and the trade-offs we accepted."
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Related issues, PRs, or code (optional)
+      placeholder: "Related to #18 and src/orders/service.ts"
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Edit or add to this list so it fits your task.
+      value: |
+        - [ ] Renders correctly on GitHub
+        - [ ] `docs/README.md` links to it
+        - [ ] Diagrams (if any) are saved in `docs/diagrams/`
+        - [ ] Commands and code snippets were tested
+        - [ ] A teammate reviewed it for accuracy
+    validations:
+      required: true

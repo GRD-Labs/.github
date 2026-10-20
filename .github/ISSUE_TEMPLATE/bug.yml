@@ -1,0 +1,46 @@
+# .github/ISSUE_TEMPLATE/bug.yml
+name: "Bug Report"
+description: "Something is broken or not behaving the way you expected"
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What went wrong?
+      description: A short description of the problem. Screenshots are welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: What did you do right before it broke? Numbered steps work best.
+      placeholder: |
+        1. Open the settings page
+        2. Clear the "Name" field and click Save
+        3. See the error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Where did it happen? (optional)
+      description: Version or commit, operating system, browser, and so on.
+      placeholder: "main @ a1b2c3d, macOS 15, Chrome 130"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error messages or logs (optional)
+      description: Paste anything that looks relevant.
+      render: shell
