@@ -6,7 +6,7 @@ Welcome! This is where we explain how we work. New here? Start with the first gu
 
 | Read this | When you want to know |
 |---|---|
-| [Documentation guide](documentation.md) | Where docs live, how to write a decision record (ADR) or a component spec, and how to add diagrams |
+| [Documentation guide](CHECKER_TEST.md) | Where docs live, how to write a decision record (ADR) or a component spec, and how to add diagrams |
 | [Issues & pull requests guide](issues.md) | When an issue is ready to start, how to name branches and PRs, how reviews work, and when a task is done |
 
 ## Templates
