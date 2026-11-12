@@ -39,9 +39,9 @@ body:
       label: Acceptance criteria
       description: The checklist that tells us this is finished. Replace the first line with what is specific to this task.
       value: |
-        - [ ] (Replace this line with what's specific to this task)
-        - [ ] Tests cover the main case and the edge cases
-        - [ ] Docs and schemas are updated if behavior changed
-        - [ ] CI passes and a teammate approved the PR
+        - (Replace this line with what's specific to this task)
+        - Docs and schemas are updated if behavior changed
+        - Tests cover the main case and the edge cases
+        - CI passes and a teammate approved the PR
     validations:
       required: true

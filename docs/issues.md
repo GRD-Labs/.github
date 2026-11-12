@@ -16,13 +16,47 @@ Merge into `main` within **2 to 3 days**. If a task is bigger than that, split i
 
 - Nobody pushes directly to `main`. Everything goes through a pull request (PR).
 - We always use **Squash and Merge**, so `main` stays a clean, readable list of changes.
-- Name your PR using [Conventional Commits](https://www.conventionalcommits.org): `feat:`, `fix:`, `docs:`, `refactor:`, or `chore:`. Example: `feat: add login rate limiting`. GitHub adds the PR number for you.
+- Name your PR using [Conventional Commits](https://www.conventionalcommits.org). Allowed types: `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `ci`, `perf`, `build`, `revert`. Example: `feat: add login rate limiting`. GitHub adds the PR number for you.
+- The PR title becomes the commit message on `main`, so CI checks it automatically (see [Automated checks](#automated-checks)). Commit messages on your branch are not checked.
 
 ### What a good PR looks like
 
 - **Small:** under 400 changed lines. Generated code, lockfiles, and assets don't count.
 - **Linked to an issue:** write `Closes #12` in the description.
-- **Green:** formatting, linting, and tests pass before anyone reviews it.
+- **Green:** the automated hygiene checks, formatting, linting, and tests pass before anyone reviews it.
+
+### Automated checks
+
+Every PR runs the shared **Repo Hygiene** workflow, so reviewers don't have to check these by hand:
+
+| Check | What it enforces | How to fix a failure |
+|---|---|---|
+| `Lint PR Title` | The title follows Conventional Commits. | Edit the PR title. The check re-runs automatically. |
+| `Check In-Repo Markdown Links` | Relative links between Markdown files and `#heading` anchors resolve. | Open the CI log, find the broken link, and fix the path or heading. |
+
+External `http(s)` links are **not** checked, to avoid flaky failures from rate limits and bot protection.
+
+#### Adding the checks to a new repo
+
+Create `.github/workflows/hygiene.yml`:
+
+```yaml
+name: Hygiene
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  hygiene:
+    uses: GRD-Labs/.github/.github/workflows/repo-hygiene.yml@main
+```
+
+Then add both checks as required status checks in the repo's branch ruleset for `main`.
 
 ### Review comments
 
@@ -61,7 +95,7 @@ A task is done when:
 ## Quick checklist before opening a PR
 
 - [ ] Branch name follows `type/issue-number-description`
-- [ ] PR title follows Conventional Commits
+- [ ] PR title follows Conventional Commits (checked by CI)
 - [ ] Description includes `Closes #<issue>`
 - [ ] Under 400 changed lines
 - [ ] CI is green

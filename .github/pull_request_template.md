@@ -12,8 +12,8 @@ Closes #
 
 - [ ] PR title follows Conventional Commits (`feat: ...`, `fix: ...`, `docs: ...`)
 - [ ] Under about 400 changed lines (generated code, lockfiles, and assets don't count)
+- [ ] Docs and schemas updated in this PR
 - [ ] Tests added or updated
-- [ ] Docs and schemas updated in this PR (or not needed)
 - [ ] CI is green
 
 <!-- Reviewers: start comments with [Blocking], [Suggestion], [Question], or [Nit].
