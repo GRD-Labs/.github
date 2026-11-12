@@ -1,0 +1,58 @@
+# GRD-Labs/.github -> .github/workflows/repo-hygiene.yml
+name: Repo Hygiene
+
+on:
+  workflow_call:
+    inputs:
+      markdown_globs:
+        description: "Glob pattern for Markdown files to check for broken links"
+        required: false
+        type: string
+        default: "**/*.md"
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  pr-title:
+    name: Lint PR Title
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Validate Conventional Commit PR Title
+        uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            refactor
+            chore
+            test
+            ci
+            perf
+            build
+            revert
+          requireScope: false
+
+  markdown-links:
+    name: Check Markdown Links
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Markdown links and heading anchors
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --offline
+            --no-progress
+            --include-fragments
+            '${{ inputs.markdown_globs || '**/*.md' }}'
+          fail: true

@@ -51,10 +51,10 @@ body:
       label: Acceptance criteria
       description: Edit or add to this list so it fits your task.
       value: |
-        - [ ] Renders correctly on GitHub
-        - [ ] `docs/README.md` links to it
-        - [ ] Diagrams (if any) are saved in `docs/diagrams/`
-        - [ ] Commands and code snippets were tested
-        - [ ] A teammate reviewed it for accuracy
+        - Renders correctly on GitHub
+        - `docs/README.md` links to it
+        - Diagrams (if any) are saved in `docs/diagrams/`
+        - Commands and code snippets were tested
+        - A teammate reviewed it for accuracy
     validations:
       required: true
